@@ -1,7 +1,6 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-let chartContext
+let chartContext;
 
 const drawBarChart = (chart, chartLabels, data) => {
 	if (!chart) {
@@ -12,7 +11,7 @@ const drawBarChart = (chart, chartLabels, data) => {
 	if (chartContext) {
 		chartContext.destroy();
 	}
-	
+
 	const colors = [
 		'#2de0a5',
 		'#ffd21f',
@@ -23,10 +22,10 @@ const drawBarChart = (chart, chartLabels, data) => {
 	const config = {
 		labels: chartLabels,
 		datasets: [{
-			label: "Clicks",
+			label: 'Clicks',
 			backgroundColor: colors,
-			data
-		}]
+			data,
+		}],
 	};
 
 	return new Chart(chart, {
@@ -36,42 +35,41 @@ const drawBarChart = (chart, chartLabels, data) => {
 			scales: {
 				yAxes: [{
 					ticks: {
-						beginAtZero: true
-					}
+						beginAtZero: true,
+					},
 				}],
 				xAxes: [{
 					ticks: {
-						autoSkip: false
-					}
-				}]
+						autoSkip: false,
+					},
+				}],
 			},
 			legend: {
-				display: false
-			}
-		}
+				display: false,
+			},
+		},
 	});
 };
 
 const updateChartData = (smilesData) => {
 	const labels = smilesData.map((m) => m.label);
 	const values = smilesData.map((m) => m.value);
-	const smiles = smilesData.map((m) => m.smiles);
-	
+
 	chartContext = drawBarChart(
 		document.getElementById('lc-smiles-chart'),
 		labels,
 		values
 	);
 
-	return chartContext
-}
+	return chartContext;
+};
 
 Template.userMood.onCreated(function() {
 	this.smilesData = new ReactiveVar([
-		{ label: 'Happy', value: 0, smile: ":grinning:" },
-		{ label: 'Sad', value: 0, smile: ":pensive:"},
-		{ label: 'Uncertain', value: 0, smile: ":thinking:"},
-		{ label: 'Confused', value: 0, smile: ":confused:"}
+		{ label: 'Happy', value: 0, smile: ':grinning:' },
+		{ label: 'Sad', value: 0, smile: ':pensive:' },
+		{ label: 'Uncertain', value: 0, smile: ':thinking:' },
+		{ label: 'Confused', value: 0, smile: ':confused:' },
 	]);
 });
 
@@ -82,7 +80,7 @@ Template.userMood.onRendered(function() {
 });
 
 Template.registerHelper('convertSmile', function(str) {
-  return emojione.shortnameToUnicode(str)
+	return emojione.shortnameToUnicode(str);
 });
 
 Template.userMood.helpers({
@@ -90,13 +88,13 @@ Template.userMood.helpers({
 		const instance = Template.instance();
 
 		return instance.smilesData.get();
-	}
+	},
 });
 
 Template.userMood.events({
 	'click .rc-popover__item-text'({ currentTarget }) {
 		const smilesData = Template.instance().smilesData.get();
-		const index = smilesData.findIndex(f => f.label === currentTarget.id);
+		const index = smilesData.findIndex((f) => f.label === currentTarget.id);
 
 		smilesData[index].value += 1;
 

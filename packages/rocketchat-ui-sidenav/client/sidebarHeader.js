@@ -185,7 +185,7 @@ const toolbarButtons = (user) => [{
 			offsetVertical: e.currentTarget.clientHeight + 10,
 		};
 		popover.open(config);
-	}
+	},
 },
 {
 	name: t('Options'),
