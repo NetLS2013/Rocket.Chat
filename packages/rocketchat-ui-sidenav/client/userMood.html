@@ -1,0 +1,28 @@
+<template name="userMood">
+	<div class="rc-popover__column">
+		<ul class="rc-popover__list">
+			{{#each smilesData}}
+				{{> smiles}}
+			{{/each}}
+		</ul>
+		
+		<span class="rc-popover__divider"></span>
+		
+		<div class="rc-popover__chart">
+			<div class="section-content border-component-color">
+				<div class="lc-monitoring-chart-container">
+					<canvas id="lc-smiles-chart"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="smiles">
+	<li class="rc-popover__item">
+		<label class="rc-popover__label">
+			<span class="rc-popover__smile">{{convertSmile smile }}</span>
+			<span class="rc-popover__item-text" id="{{label}}">{{label}}</span>
+		</label>
+	</li>
+</template>

@@ -172,6 +172,22 @@ const toolbarButtons = (user) => [{
 	},
 },
 {
+	name: t('Smile_face'),
+	icon: 'emoji',
+	action: (e) => {
+		const options = [];
+		const config = {
+			template: 'userMood',
+			currentTarget: e.currentTarget,
+			data: {
+				options,
+			},
+			offsetVertical: e.currentTarget.clientHeight + 10,
+		};
+		popover.open(config);
+	}
+},
+{
 	name: t('Options'),
 	icon: 'menu',
 	condition: () => AccountBox.getItems().length || hasAtLeastOnePermission(['manage-emoji', 'manage-integrations', 'manage-oauth-apps', 'manage-own-integrations', 'manage-sounds', 'view-logs', 'view-privileged-setting', 'view-room-administration', 'view-statistics', 'view-user-administration']),

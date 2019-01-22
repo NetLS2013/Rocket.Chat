@@ -9,6 +9,7 @@ import './sideNav.html';
 import './toolbar.html';
 import './roomList.html';
 import './sortlist.html';
+import './userMood.html';
 import './userStatus.html';
 import './createCombinedFlex';
 import './chatRoomItem';
@@ -20,6 +21,7 @@ import './sidebarItem';
 import './sideNav';
 import './roomList';
 import './sortlist';
+import './userMood';
 import './toolbar';
 
 export {
